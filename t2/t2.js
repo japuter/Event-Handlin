@@ -771,3 +771,27 @@ const restaurants = [
 ];
 
 // your code here
+
+const sortedRest = restaurants.sort((a, b))
+
+const table = document.querySelector("table");
+const tableBody = document.createElement('tbody');
+
+table.appendChild(tableBody);
+
+restaurants.forEach(restaurant => {
+  const row = document.createElement('tr');
+
+
+  const namecel = document.createElement('td');
+  namecel.textContent = restaurant.name;
+
+  const addressCell = document.createElement('td');
+  addressCell.textContent=restaurant.address;
+
+  row.appendChild(namecel);
+  row.appendChild(addressCell);
+
+  tableBody.appendChild(row);
+
+})
