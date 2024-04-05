@@ -772,7 +772,6 @@ const restaurants = [
 
 // your code here
 
-const sortedRest = restaurants.sort((a, b))
 
 const table = document.querySelector("table");
 const tableBody = document.createElement('tbody');
