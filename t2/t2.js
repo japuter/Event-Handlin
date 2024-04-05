@@ -778,10 +778,15 @@ const tableBody = document.createElement('tbody');
 
 table.appendChild(tableBody);
 
+restaurants.sort((a, b) => a.name.localeCompare(b.name));
+
 restaurants.forEach(restaurant => {
   const row = document.createElement('tr');
-
-
+  row.addEventListener('click', () => {
+    removeHighlight();
+    row.classList.add('highlight');
+    showModal(restaurant);
+  });
   const namecel = document.createElement('td');
   namecel.textContent = restaurant.name;
 
@@ -792,5 +797,30 @@ restaurants.forEach(restaurant => {
   row.appendChild(addressCell);
 
   tableBody.appendChild(row);
+});
+document.getElementById('closeModal').addEventListener('click', () => {
+  modal.style.display = 'none';
+});
 
-})
+const modal = document.getElementById('restaurantModal');
+const modalContent = document.getElementById('modalContent');
+
+// function to remove highlight
+function removeHighlight() {
+  document.querySelectorAll('tr').forEach(row => {
+    row.classList.remove('highlight');
+  });
+}
+//function to populate and show modal
+function showModal(restaurant) {
+  modalContent.innerHTML = `
+  <p>Name: ${restaurant.name}</p>
+  <p>Address: ${restaurant.address}</p>
+  <p>Postal Code: ${restaurant.postalCode}</p>
+  <p>City: ${restaurant.city}</p>
+  <p>Phone: ${restaurant.phone}</p>
+  <p>Company: ${restaurant.company}</p>
+`;
+modal.style.display = 'block';
+}
+
